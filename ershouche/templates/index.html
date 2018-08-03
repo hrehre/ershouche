@@ -822,13 +822,14 @@ $(function(){
       <div class="p-dl">
         <form onsubmit="return check();" enctype="multipart/form-data" method="post" name="form" id="form">
           <ul class="login-items">
+              {% csrf_token %}
             <li>
               <label>用户名(手机号)</label>
-              <input class="input" type="text" value="" maxlength="32"  name="username" placeholder="请输入您的手机号">
+              <input class="input" type="text" value="" id="mobile_login" maxlength="32"  name="username" placeholder="请输入您的手机号">
             </li>
             <li>
               <label>密码</label>
-              <input class="input" type="password" value="" maxlength="16"  name="password">
+              <input class="input" type="password" id="password_login" value="" maxlength="16"  name="password">
             </li>
           </ul>
           <div class="login-check">
@@ -838,7 +839,7 @@ $(function(){
           <div class="login-button">
             <input type="hidden" value="" name="carid" class="ordercarid" />
             <input type="hidden" value="" name="carstatus" class="orderstatus" />
-            <input type="button"  value="登&nbsp;&nbsp;&nbsp;&nbsp;陆" class="fM" onclick="$('#form').submit()" />
+            <input type="button"  value="登&nbsp;&nbsp;&nbsp;&nbsp;陆" class="fM" onclick="login()" />
           </div>
           <!---校验-->
          <p class="sell-phone-error" style="display:block;">请填写正确的手机号码</p>
@@ -848,28 +849,21 @@ $(function(){
         <form class="registForm" onsubmit="return regcheck();" enctype="multipart/form-data" method="post" name="reg" id="reg">
           <ul class="login-items">
             <li class="clearfix">
-              <input class="input" name="mobile" id="mobile" type="text" value="" placeholder="手机号码（登录帐号）">
+              <input class="input" name="mobile" id="mobile_1_2" type="text" value="" placeholder="手机号码（登录帐号）">
             </li>
+
             <li class="clearfix">
-              <input class="input left" type="text" value=""  name="verify" placeholder="输入验证码" style="width:100px;" />
-              <div id="send"><a href="#" class="send_code right">获取验证码</a></div>
+              <input class="input" type="text" value="" id="user_name" name="realname" placeholder="姓名">
             </li>
+
             <li class="clearfix">
-              <input class="input" type="text" value=""  name="realname" placeholder="姓名">
-            </li>
-            <li class="clearfix sex">
-              <input type="radio" checked="" name="gender" value="M" />
-              男&nbsp;&nbsp;&nbsp;&nbsp;
-              <input type="radio" name="gender" value="F" />
-              女 </li>
-            <li class="clearfix">
-              <input id="" class="input" type="password" name="password" value="" placeholder="输入密码（六位字符）">
+              <input id="password" class="input" type="password" name="password" value="" placeholder="输入密码（六位字符）">
             </li>
           </ul>
           <div class="login-button">
             <input type="hidden" value="" name="carid" class="ordercarid" />
             <input type="hidden" value="" name="carstatus" class="orderstatus" />
-            <input type="button"  value="立即注册" class="fM" onclick="$('#reg').submit()" />
+            <input type="button"  value="立即注册" class="fM" onclick="register()" />
           </div>
          <!---校验-->
          <p class="sell-phone-error" style="display:block;">请填写正确的手机号码</p>
